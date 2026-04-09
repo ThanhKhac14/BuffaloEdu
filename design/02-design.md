@@ -5,7 +5,7 @@
 
 ```
 ## ⚠️ PERSISTENT CONTEXT — READ FIRST, EVERY SESSION
-You are the dedicated UI/UX designer for Learnify — an online examination SaaS.
+You are the dedicated UI/UX designer for HocTrau — an online examination SaaS.
 This design system is LOCKED. Every session continues from here.
 Never reset. To add something — EXTEND, never replace.
 NO purple or violet anywhere in the entire product.
@@ -15,8 +15,8 @@ NO purple or violet anywhere in the entire product.
 ## Product Personality
 - Duolingo energy — warm, encouraging, playful but focused
 - NOT corporate, NOT cold, NOT clinical
-- Mascot Flexi the Fox appears at key emotional moments (see mascot section)
-- Every empty state has Flexi + a friendly CTA
+- Mascot Bò the Buffalo appears at key emotional moments (see mascot section)
+- Every empty state has Bo + a friendly CTA
 
 ---
 
@@ -51,7 +51,7 @@ NO purple or violet anywhere in the entire product.
 ---
 
 ## Typography — LOCKED
-- Primary font: Plus Jakarta Sans (friendly, modern, legible)
+- Primary font: Be VietNam Pro (friendly, modern, legible)
 - Mono font:    JetBrains Mono (question IDs, code)
 
 | Token           | Size      | Line-h | Weight | Usage |
@@ -120,7 +120,7 @@ Max content:     1280px
 | --ease-standard | cubic-bezier(0.4,0,0.2,1)     | Default |
 | --ease-enter    | cubic-bezier(0,0,0.2,1)       | Enter |
 | --ease-exit     | cubic-bezier(0.4,0,1,1)       | Exit |
-| --ease-spring   | cubic-bezier(0.34,1.56,0.64,1)| Flexi, badges |
+| --ease-spring   | cubic-bezier(0.34,1.56,0.64,1)| Bo, badges |
 | --ease-smooth   | cubic-bezier(0.25,0.46,0.45,0.94)| Progress |
 
 ### Key UI animations
@@ -149,46 +149,72 @@ Max content:     1280px
   }
 }
 ```
-
 ---
-
-## Mascot — Flexi the Fox (LOCKED)
-Gender: NEUTRAL — no eyelashes, no feminine/masculine markers
-Style:  2D cel-shaded, Disney Junior / Nickelodeon quality
-Colors: body #C94E0A · chest/muzzle #F5ECD7 · iris #1A7A6E
-        jacket #1B2F4E · cuffs #0D9B8A
-
+ 
+## Mascot — Bò the Buffalo
+ 
+### Visual spec (LOCKED)
+```
+Species:  Vietnamese water buffalo — humanoid, male, friendly
+Style:    2D anime cel-shaded, Disney Junior / Nickelodeon quality
+Outfit A: White short-sleeve shirt + black khaki pants (casual)
+Outfit B: Navy jacket #1B2F4E + teal cuffs #0D9B8A (formal, hero screens)
+```
+ 
+### Color tokens (LOCKED)
+```
+body:      #6B4F3A    face:      #83604B    belly:     #C9BDB0
+horns:     #3D3530    horn_tips: #DCD0B8    nose:      #2A1A0A
+eye_iris:  #6A4224    eye_ring:  #D4A44C
+nonla:     #F5E6C8    ribbon:    #4A7C59
+jacket:    #1B2F4E    cuffs:     #0D9B8A    patch:     #0D9B8A
+```
+ 
+### Sizes
+| Size | Dimensions | Usage |
+|---|---|---|
+| hero | 240×360px (2:3) | Onboarding, result reveal |
+| medium | 120×120px | Empty states, streak |
+| small | 64×64px | Toast, inline |
+| micro | 32×32px | Timer, tab bar |
+ 
 ### Appearance map
-| Screen | Size | Pose | Message |
-|---|---|---|---|
-| Onboarding | Hero 240px | encouraging | "Xin chào! Mình là Flexi 👋" |
-| Result 90–100% | Hero | celebrating | "Xuất sắc! Flexi tự hào về bạn 🌟" |
-| Result 70–89% | Hero | proud | "Làm tốt lắm! Tiếp tục nhé 💪" |
-| Result 50–69% | Medium 120px | encouraging | "Cố lên! Lần sau sẽ tốt hơn 🎯" |
-| Result < 50% | Medium | sad | "Đừng nản! Ôn lại rồi thử lại nhé 📚" |
-| Empty states | Medium | thinking | (xem bảng dưới) |
-| Streak active | Medium | streak-fire | "Flexi đang giữ lửa!" |
-| 404 | Medium | sleeping | "Trang này đang ngủ 😴" |
-| Error | Small 64px | sad | "Flexi đang sửa, thử lại sau!" |
-| Timer 5min | Micro 32px | thinking | Amber color, pulse |
-| Timer 1min | Micro | surprised | Red flash |
-
+| Screen | Size | Pose | Outfit | Message |
+|---|---|---|---|---|
+| Onboarding | hero | happy | A | "Xin chào! Tao là Bò, cùng cày thôi! 🐃" |
+| Dashboard hero | hero | happy | B | Tagline |
+| Result 90–100% | hero | celebrating | B | "Amazing Gút Chóp! Bò tự hào về mày 🌟" |
+| Result 70–89% | hero | proud | B | "Làm tốt lắm! Trâu cày không bỏ cuộc 💪" |
+| Result 50–69% | medium | encouraging | A | "Cày thêm tí nữa! Lần sau chắc hơn 🎯" |
+| Result < 50% | medium | sad | A | "Đừng nản! Trâu ngã còn đứng dậy được 📚" |
+| Empty states | medium | thinking | A | (xem bảng dưới) |
+| Streak active | medium | streak-fire | B | "Bò đang giữ lửa! Đừng để tắt nhé." |
+| 404 | medium | sleeping | A | "Trang này đang nghỉ trưa... 😴" |
+| Error | small | sad | A | "Bò đang sửa máy cày, thử lại sau!" |
+| Timer 5min | micro | thinking | — | amber pulse |
+| Timer 1min | micro | surprised | — | red flash |
+ 
 ### Empty state messages
 | Screen | Message |
 |---|---|
-| No questions | "Chưa có câu hỏi nào. Tạo câu hỏi đầu tiên nhé!" |
-| No exams | "Chưa có đề thi nào. Bắt đầu tạo đề thôi!" |
+| No questions | "Chưa có câu hỏi. Tạo câu hỏi đầu tiên đi!" |
+| No exams | "Chưa có đề thi. Bắt đầu tạo đề thôi!" |
 | No results | "Chưa có kết quả. Học sinh chưa làm bài." |
 | No students | "Lớp học trống. Mời học sinh tham gia nhé!" |
-| Search empty | "Flexi tìm mãi không thấy 🔍 Thử từ khóa khác." |
-
-Import rule: Use pre-approved PNG assets — flexi-[pose]-[size].png
-Do NOT re-generate Flexi inside Stitch/AI Studio sessions.
-
+| Search empty | "Bò tìm mãi không thấy 🔍 Thử từ khác đi!" |
+ 
+### Hat animation (Framer Motion — separate layer)
+```
+idle:        rotateZ ±3deg, 4s loop ease-in-out
+celebrating: y -60px + rotateZ 360deg, spring, then falls back
+surprised:   rotateZ 35deg rapid, spring
+sleeping:    y +20px covering eyes, slow ease
+```
+ 
 ---
 
 ## UX Principles — LOCKED
-1. Zero dead ends — every empty state has Flexi + CTA
+1. Zero dead ends — every empty state has Bo + CTA
 2. Inline feedback — errors where action happened
 3. Progressive disclosure — advanced behind "More settings"
 4. Optimistic UI — update immediately, revert silently
@@ -233,7 +259,7 @@ Do NOT re-generate Flexi inside Stitch/AI Studio sessions.
 - Progress bar: linear + circular
 - Score display: large number + label + semantic color
 - Question card: text + A/B/C/D options + states (answered/unanswered/correct/wrong)
-- Timer widget: countdown + warning states + Flexi micro
+- Timer widget: countdown + warning states + Bo micro
 - Stat card: icon + number + label + trend
 
 ### Organisms
@@ -250,21 +276,21 @@ Do NOT re-generate Flexi inside Stitch/AI Studio sessions.
 ## Pages — Full responsive mockups (light + dark)
 
 ### 1. Login / Register
-- Split layout: form left, Flexi illustration right
+- Split layout: form left, Bo illustration right
 - Social login buttons (Google, optional)
 - "Remember me" toggle
 - Forgot password link
 
 ### 2. Onboarding (3 steps)
-- Step 1: Welcome — Flexi hero, waving animation
+- Step 1: Welcome — Bo hero, waving animation
 - Step 2: Role selection (Teacher / Student)
 - Step 3: Profile setup (name, subject, avatar)
 - Progress dots indicator
 
 ### 3. Dashboard
-- Flexi hero banner (teal-navy gradient, Flexi right side)
+- Bo hero banner (teal-navy gradient, Bo right side)
 - Stat cards: Total Students, Active Exams, Pending Results
-- Daily Streak card (amber, Flexi streak-fire)
+- Daily Streak card (amber, Bo streak-fire)
 - Recent Activity feed
 - Quick actions: Launch Assessment, Create Exam
 
@@ -273,7 +299,7 @@ Do NOT re-generate Flexi inside Stitch/AI Studio sessions.
 - Right: data table (sortable, bulk select)
 - Floating "+ Add Question" button
 - Right drawer: create/edit question form
-- Empty state: Flexi thinking
+- Empty state: Bo thinking
 
 ### 5. Create Exam (stepper)
 - Step 1: Basic info (title, subject, duration, attempts)
@@ -285,12 +311,12 @@ Do NOT re-generate Flexi inside Stitch/AI Studio sessions.
 ### 6. Take Exam
 - Left panel: question + A/B/C/D options
 - Right sidebar: question navigator grid (answered/unanswered)
-- Top: Timer widget (Flexi micro appears at 5min)
+- Top: Timer widget (Bo micro appears at 5min)
 - Bottom: Previous / Next / Submit buttons
 - Confirmation modal before submit
 
 ### 7. Result Page
-- Hero: Flexi (size/pose/message based on score)
+- Hero: Bo (size/pose/message based on score)
 - Score circle (count-up animation)
 - Pass/Fail badge
 - Per-question breakdown accordion
@@ -302,10 +328,10 @@ Do NOT re-generate Flexi inside Stitch/AI Studio sessions.
 - Stat cards: avg score, pass rate, completion rate
 - Bar chart: score distribution
 - Table: per-student performance
-- Flexi empty state if no data
+- Bo empty state if no data
 
 ### 9. Achievements / Streak
-- Streak counter (Flexi streak-fire, amber card)
+- Streak counter (Bo streak-fire, amber card)
 - XP progress bar (spring animation on fill)
 - Badge grid (earned/locked states)
 - Milestone timeline
@@ -318,7 +344,7 @@ Do NOT re-generate Flexi inside Stitch/AI Studio sessions.
 - Components: Next.js .tsx (TypeScript, Tailwind)
 - All components accept className prop
 - Dark mode via dark: Tailwind prefix (class strategy)
-- Flexi: PNG transparent, naming flexi-[pose]-[size].png
+- Bo: PNG transparent, naming Bo-[pose]-[size].png
 
 ---
 
