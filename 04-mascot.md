@@ -319,7 +319,7 @@ Do not add extra commentary. Produce images and COLOR_TOKENS JSON only.
 |---|---|---|---|---|
 | Onboarding bước 1 | Hero | happy | Variant A | *"Xin chào! Tao là Bò, cùng cày thôi! 🐃"* |
 | Dashboard hero banner | Hero | happy | Variant B | Hiển thị cùng tagline |
-| Result 90–100% | Hero | celebrating | Variant B | *"Đỉnh của chóp! Bò tự hào về mày 🌟"* |
+| Result 90–100% | Hero | celebrating | Variant B | *"Amazing Gút Chóp em! Bò tự hào về mày 🌟"* |
 | Result 70–89% | Hero | proud | Variant B | *"Làm tốt lắm! Trâu cày không bỏ cuộc 💪"* |
 | Result 50–69% | Medium | encouraging | Variant A | *"Cày thêm tí nữa! Lần sau chắc hơn 🎯"* |
 | Result < 50% | Medium | sad | Variant A | *"Đừng nản! Trâu ngã còn đứng dậy được 📚"* |
