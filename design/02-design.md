@@ -25,9 +25,9 @@ NO purple or violet anywhere in the entire product.
 ### Light / Dark tokens
 | Token                  | Light    | Dark     | Usage |
 |------------------------|----------|----------|-------|
-| --color-primary        | #0EA5E9  | #38BDF8  | CTAs, links, active |
-| --color-primary-hover  | #0284C7  | #0EA5E9  | Button hover |
-| --color-primary-subtle | #E0F2FE  | #0C4A6E  | Badge bg, tag bg |
+| --color-primary        | #10B981  | #34D399  | CTAs, links, active |
+| --color-primary-hover  | #059669  | #10B981  | Button hover |
+| --color-primary-subtle | #D1FAE5  | #0C4A6E  | Badge bg, tag bg |
 | --color-secondary      | #F59E0B  | #FCD34D  | Highlights, streak |
 | --color-success        | #10B981  | #34D399  | Correct, pass |
 | --color-warning        | #F59E0B  | #FCD34D  | Timer warning |
@@ -158,7 +158,7 @@ Max content:     1280px
 Species:  Vietnamese water buffalo — humanoid, male, friendly
 Style:    2D anime cel-shaded, Disney Junior / Nickelodeon quality
 Outfit A: White short-sleeve shirt + black khaki pants (casual)
-Outfit B: Navy jacket #1B2F4E + teal cuffs #0D9B8A (formal, hero screens)
+<!-- Outfit B: Navy jacket #1B2F4E + teal cuffs #0D9B8A (formal, hero screens) -->
 ```
  
 ### Color tokens (LOCKED)

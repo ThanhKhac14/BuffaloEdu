@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>HocTrau — Template Editor (Mockup)</title>
+  <style>
+    :root{
+      --color-primary:#10B981; --color-primary-hover:#059669; --color-surface-0:#FFFFFF; --color-surface-1:#F8FAFC; --color-surface-2:#F1F5F9; --color-border:#E2E8F0; --text-body:16px; --radius-md:8px;
+      --accent: #C9A66A; /* woven accent */
+      font-family: 'Be Vietnam Pro', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+    body{margin:0;background:var(--color-surface-0);color:#0F172A}
+    .container{display:flex;gap:20px;min-height:100vh;padding:24px;box-sizing:border-box}
+    .sidebar{width:260px;background:var(--color-surface-1);border:1px solid var(--color-border);border-radius:var(--radius-md);padding:12px;box-shadow:0 2px 8px rgba(0,0,0,0.04)}
+    .main{flex:1;background:linear-gradient(180deg,var(--color-surface-0),#fbfcfd);border-radius:var(--radius-md);padding:16px;border:1px solid var(--color-border)}
+    .panel{width:320px;background:var(--color-surface-1);border:1px solid var(--color-border);border-radius:var(--radius-md);padding:12px}
+    .title{font-size:20px;font-weight:700;margin-bottom:8px}
+    .tree-item{padding:8px;border-radius:6px;margin-bottom:6px;background:#fff;border:1px solid transparent}
+    .tree-item.dragging{opacity:0.8;border:1px dashed var(--accent)}
+    .question-card{background:var(--color-surface-1);padding:14px;border-radius:10px;border:1px solid var(--color-border);box-shadow:0 2px 6px rgba(0,0,0,0.03)}
+    .option{display:block;padding:8px;margin-top:8px;border-radius:8px;border:1px solid var(--color-border);background:var(--color-surface-0)}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:8px;border:none;background:var(--color-primary);color:#fff;font-weight:600;cursor:pointer}
+    .muted{color:#6b7280;font-size:14px}
+    .hero-bo{display:flex;align-items:center;gap:8px}
+    .nonla{width:44px;height:44px;border-radius:999px;background:var(--accent);display:inline-flex;align-items:center;justify-content:center;color:#fff;font-weight:700}
+    .small{font-size:14px}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <aside class="sidebar">
+      <div class="title">Templates</div>
+      <div style="margin-bottom:8px"><button class="btn">+ New Template</button></div>
+      <div class="muted small">Your templates</div>
+      <div style="margin-top:12px">
+        <div class="tree-item">Section 1 — Intro</div>
+        <div class="tree-item">Section 2 — Reading</div>
+        <div class="tree-item">Section 3 — Listening</div>
+      </div>
+      <div style="margin-top:14px" class="hero-bo"><div class="nonla">Bo</div><div class="muted small">Không có template nào? Tạo mẫu mới nhé!</div></div>
+    </aside>
+
+    <main class="main">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+        <div>
+          <div style="font-weight:700;font-size:18px">Editing: Bài ôn tập - Tiếng Anh cơ bản</div>
+          <div class="muted small">Autosave every 5s • Status: <strong>DRAFT</strong></div>
+        </div>
+        <div>
+          <button class="btn">Save</button>
+        </div>
+      </div>
+
+      <section class="question-card">
+        <div style="font-weight:700;margin-bottom:8px">Câu 1: Choose the correct past tense form</div>
+        <div class="muted small">Stem: She (go) to school yesterday.</div>
+        <label class="option"><input type="radio" name="q1"> went</label>
+        <label class="option"><input type="radio" name="q1"> gone</label>
+        <label class="option"><input type="radio" name="q1"> go</label>
+        <div style="margin-top:12px;display:flex;gap:8px;align-items:center">
+          <button class="btn">Preview Student View</button>
+          <button style="padding:8px 12px;border-radius:8px;border:1px solid var(--color-border);background:transparent">Add Explanation</button>
+        </div>
+      </section>
+    </main>
+
+    <aside class="panel">
+      <div class="title">Properties</div>
+      <div class="muted small">Duration</div>
+      <div style="margin:6px 0"><input style="width:100%;padding:8px;border-radius:6px;border:1px solid var(--color-border)" value="10 minutes"></div>
+      <div class="muted small">Attempts</div>
+      <div style="margin:6px 0"><select style="width:100%;padding:8px;border-radius:6px;border:1px solid var(--color-border)"><option>1</option><option>2</option><option>Unlimited</option></select></div>
+      <div style="margin-top:12px">
+        <button class="btn" style="width:100%">Assign to Class</button>
+      </div>
+      <div style="margin-top:10px" class="muted small">Preview:</div>
+      <div style="margin-top:8px"><button style="padding:8px;border-radius:6px;border:1px solid var(--color-border);width:100%">Open Student Preview</button></div>
+    </aside>
+  </div>
+</body>
+</html>

@@ -193,7 +193,7 @@ Thresholds: `p95 < 500ms`, `error_rate < 0.01`.
 - Load PNG from `/public/mascot/bo-[pose]-[size].png`
 - Hat as separate Framer Motion layer (animate independently)
 - Idle breathing animation (scale 1→1.02→1, 3s loop)
-- Speech bubble: Plus Jakarta Sans, radius-xl, white/surface-1 bg, shadow-lg
+- Speech bubble: Be Vietnam Pro, radius-xl, white/surface-1 bg, shadow-lg
 - Disable all animation when `prefers-reduced-motion` is set
 
 ### 6.4 — Shell app

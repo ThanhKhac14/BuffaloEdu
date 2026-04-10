@@ -9,7 +9,7 @@ These rules are NON-NEGOTIABLE. Follow them in every line of code, every config 
 ### Backend
 | Layer | Technology | Version |
 |---|---|---|
-| Language | Golang | 1.24+ |
+| Language | Golang | 1.22+ |
 | Transport (internal) | gRPC + Protobuf | latest |
 | Proto tooling | buf CLI | latest |
 | Database | PostgreSQL (pgx/v5) | 16+ |
@@ -26,7 +26,7 @@ These rules are NON-NEGOTIABLE. Follow them in every line of code, every config 
 | Language | TypeScript (strict) | 5+ |
 | MFE | @module-federation/nextjs-mf | latest |
 | Styling | Tailwind CSS v4 | latest |
-| Fonts | Plus Jakarta Sans + JetBrains Mono | via next/font |
+| Fonts | Be Vietnam Pro + JetBrains Mono | via next/font |
 | Icons | Lucide React | latest |
 | State | Zustand | latest |
 | Data fetching | TanStack Query v5 | latest |
@@ -111,7 +111,7 @@ Strict 4px base. Only these Tailwind values:
 - Max content width: `max-w-7xl` (1280px) with `mx-auto`
 
 ### Typography
-- Only 2 fonts: Plus Jakarta Sans (body/UI) and JetBrains Mono (code/data/IDs)
+- Only 2 fonts: Be Vietnam Pro (body/UI) and JetBrains Mono (code/data/IDs)
 - Headings: `font-bold tracking-tight`
 - Body: `text-sm` or `text-base`, normal weight
 - Labels: `text-sm font-medium text-muted-foreground`

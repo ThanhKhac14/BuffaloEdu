@@ -109,7 +109,7 @@ Rules:
 - Hat is a SEPARATE Framer Motion layer — do not bake it into body image
 - Idle breathing: scale 1→1.02→1, 3s loop, ease-in-out
 - Score thresholds: 90–100% celebrating · 70–89% proud · 50–69% encouraging · <50% sad
-- Speech bubble: Plus Jakarta Sans, body-sm, radius-xl, white fill, border-border
+- Speech bubble: Be Vietnam Pro, body-sm, radius-xl, white fill, border-border
 - Never show Bò without a contextual message (use appearance map from `design-system.md`)
 
 ---

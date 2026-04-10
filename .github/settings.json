@@ -1,0 +1,36 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Write|Edit|Create",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "grep -rE '(password|secret|token|api_key)\\s*=\\s*[\"\\'][^$]' $CLAUDE_FILE_PATH 2>/dev/null && echo 'WARNING: Possible hardcoded secret detected' || true"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if echo \"$CLAUDE_FILE_PATH\" | grep -q '\\.proto$'; then cd proto && buf lint 2>&1 | head -5 || true; fi"
+          },
+          {
+            "type": "command",
+            "command": "if echo \"$CLAUDE_FILE_PATH\" | grep -q '\\.go$'; then go vet $(dirname $CLAUDE_FILE_PATH)/... 2>&1 | head -10 || true; fi"
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "type": "command",
+        "command": "echo '🐃 BuffaloEdu workspace loaded. Commands: /review /bootstrap /deploy /test-all /compact'"
+      }
+    ]
+  }
+}

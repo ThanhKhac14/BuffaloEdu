@@ -172,7 +172,7 @@ export default {
       borderRadius: tokens.radius,
       boxShadow: tokens.shadow,
       fontFamily: {
-        sans: ['Plus Jakarta Sans', 'sans-serif'],
+        sans: ['Be Vietnam Pro', 'sans-serif'],
         mono: ['JetBrains Mono', 'monospace'],
       },
     },
@@ -306,7 +306,7 @@ interface BoProps {
 ```
 - Load PNG from /public/mascot/Bo-{pose}-{size}.png
 - Framer Motion: idle breathing (scale 1→1.02→1, 3s loop)
-- Message: speech bubble, Plus Jakarta Sans, positioned top-left
+- Message: speech bubble, Be Vietnam Pro, positioned top-left
 - animate={false} respects prefers-reduced-motion
 
 ---

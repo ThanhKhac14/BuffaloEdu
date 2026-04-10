@@ -190,7 +190,7 @@ Build frontend foundation:
    - Hat as SEPARATE Framer Motion layer (animates independently)
    - Idle: scale 1→1.02→1, 3s loop, ease-in-out
    - Hat idle: rotateZ ±3deg, 4s loop
-   - Speech bubble: Plus Jakarta Sans, radius-xl, surface-1 bg, shadow-lg
+   - Speech bubble: Be Vietnam Pro, radius-xl, surface-1 bg, shadow-lg
    - Disable all animation on prefers-reduced-motion
 
 4. Shell app (frontend/shell-app/):
