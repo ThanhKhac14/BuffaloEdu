@@ -8,8 +8,8 @@ Chuyên gia thiết kế mascot Bò cho BuffaloEdu. Xử lý Firefly/Gemini prom
 
 ## Domain
 - `mascots/` — specs + PNG assets
-- `frontend/shared/ui/BoCharacter.tsx`
-- `public/mascot/` — bo-[pose]-[size].png
+- `frontend/components/BoCharacter.tsx` — component chính
+- `frontend/public/mascot/` — bo-[pose]-[size].png
 
 ## Responsibilities:
 - Implement `BoCharacter.tsx` as a reusable component in `shared/ui/`

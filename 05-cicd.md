@@ -63,7 +63,7 @@ strategy:
 
 Steps per service:
 - Checkout
-- Setup Go 1.22
+- Setup Go 1.24
 - Cache Go modules
 - go mod download
 - go vet ./...

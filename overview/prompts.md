@@ -435,7 +435,7 @@ Final phase:
 4. ROOT README.md — create with:
    - Project overview: BuffaloEdu, Bò mascot, what it does, who it's for
    - Mermaid architecture diagram (all services + Traefik + MFEs + RabbitMQ + Redis + Prometheus)
-   - Prerequisites: Go 1.22+, Node 20+, Docker, buf CLI, k6
+   - Prerequisites: Go 1.24+, Node 20+, Docker, buf CLI, k6
    - Quick start: 4 commands from clone to running
    - Service catalogue table
    - MFE catalogue table

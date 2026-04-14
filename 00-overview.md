@@ -6,11 +6,12 @@
 ## Product
 | | |
 |---|---|
-| **App name** | HocTrau |
-| **Tagline** | Assess smarter, learn faster |
+| **App name** | HocTrau (BuffaloEdu) |
+| **Tagline** | *"Cày thôi!"* |
 | **Type** | Online Examination & Learning Assessment Platform |
-| **Style** | Modern SaaS, Duolingo-energy, friendly, NO purple/violet |
+| **Style** | Glassmorphism · Botanical/Organic · Matcha/Đất nung · NO purple/violet |
 | **Users** | Teacher · Student · Admin |
+| **Dev model** | Solo developer — simplicity over scalability |
 
 ---
 
@@ -22,90 +23,78 @@
 └──────────────────────┬──────────────────────────────┘
                        │
               ┌────────▼────────┐
-              │  Traefik v3     │  ← Load Balancer / Reverse Proxy
-              │  (HTTPS, LB)    │    Free · Auto SSL · Docker-native
+              │   Next.js App   │  ← Frontend (port 3000)
+              │  (App Router)   │    Vercel / Docker
               └────────┬────────┘
-                       │
+                       │ REST API calls
               ┌────────▼────────┐
-              │  API Gateway    │  ← REST → gRPC fan-out (Golang)
+              │   Go Monolith   │  ← Backend (port 8000)
+              │   (Gin router)  │    1 binary, all domains
               └────────┬────────┘
                        │
-        ┌──────────────┼──────────────┐
-        │              │              │
-   ┌────▼────┐   ┌─────▼────┐  ┌─────▼────┐
-   │  auth   │   │  user    │  │  exam    │  ... more services
-   │ service │   │ service  │  │ service  │
-   └────┬────┘   └─────┬────┘  └─────┬────┘
-        │              │              │
-        └──────────────┼──────────────┘
-                       │
-            ┌──────────▼──────────┐
-            │  RabbitMQ · Redis   │
-            │  PostgreSQL (each)  │
-            └─────────────────────┘
-
-Frontend (Microfrontend — Module Federation)
-┌──────────────────────────────────────────────┐
-│  shell-app (Next.js — host)                  │
-│  ├── mfe-auth      (login, register)         │
-│  ├── mfe-dashboard (home, stats)             │
-│  ├── mfe-exam      (create, take, result)    │
-│  ├── mfe-question  (bank, management)        │
-│  └── mfe-reports   (analytics, streak)      │
-└──────────────────────────────────────────────┘
-
-Observability
-┌──────────────────────────────────────────────┐
-│  Prometheus → Grafana                        │
-│  Traefik dashboard (:8080)                   │
-│  k6 (performance testing)                   │
-└──────────────────────────────────────────────┘
-
-CI/CD: GitHub Actions → Docker build → push → deploy
+        ┌──────────────┴──────────────┐
+        │                             │
+┌───────▼────────┐          ┌─────────▼────────┐
+│   Supabase     │          │   Supabase       │
+│  PostgreSQL    │          │  Auth + Storage  │
+│  (pgx/v5 DSN) │          │  (SDK + REST)    │
+└────────────────┘          └──────────────────┘
 ```
 
 ---
 
-## Services Map
+## API Domains (Go Monolith)
 
-| Service | Port | gRPC | Domain | DB |
-|---|---|---|---|---|
-| gateway | 8000 | — | Infrastructure | — |
-| auth | 8001 | 9001 | Security | PostgreSQL auth_db |
-| user | 8002 | 9002 | Identity | PostgreSQL user_db |
-| profile | 8003 | 9003 | Identity | PostgreSQL profile_db |
-| question-bank | 8004 | 9004 | Exam | PostgreSQL question_db |
-| exam | 8005 | 9005 | Exam | PostgreSQL exam_db + Redis |
-| submission | 8006 | 9006 | Exam | PostgreSQL submission_db |
-| result | 8007 | 9007 | Analytics | PostgreSQL result_db |
-| notification | 8008 | — | Async | RabbitMQ consumer |
-
----
-
-## Frontend MFE Map
-
-| App | Route | Owns |
+| Domain | Prefix | Chức năng |
 |---|---|---|
-| shell-app | / | Layout, nav, theme, auth state |
-| mfe-auth | /login · /register · /onboarding | Auth flows |
-| mfe-dashboard | /dashboard | Stats, "Bo" - Vietnamese Buffalo hero, activity |
-| mfe-exam | /exams/* · /exams/[id]/take · /result | Exam lifecycle |
-| mfe-question | /question-bank | CRUD questions |
-| mfe-reports | /reports · /achievements | Analytics, streak |
+| Auth | `/api/auth/*` | Sync session với Supabase Auth, role assignment |
+| User | `/api/users/*` | CRUD profile, role management |
+| Question | `/api/questions/*` | CRUD questions, bulk import, search |
+| Exam | `/api/exams/*` | Create/publish exams, randomize |
+| Submission | `/api/submissions/*` | Submit answers, auto-grading |
+| Result | `/api/results/*` | Scores, reports, analytics |
 
 ---
 
-## File Index — 7 prompt files
+## Frontend Routes (Next.js App Router)
+
+| Route | Trang |
+|---|---|
+| `/login` `/register` `/onboarding` | Auth flows |
+| `/dashboard` | Stats, Bò hero, activity |
+| `/exams` `/exams/create` `/exams/[id]/take` | Exam lifecycle |
+| `/question-bank` | CRUD questions |
+| `/reports` `/achievements` | Analytics, streak |
+| `/result/[id]` | Kết quả sau thi |
+
+---
+
+## Database — Supabase PostgreSQL
+
+```sql
+-- 1 project Supabase, 1 schema public
+users           -- sync từ supabase.auth.users
+profiles        -- extended user info, avatar_url
+questions       -- content, options, correct_answer, difficulty, tags
+exams           -- title, duration, settings, published
+exam_questions  -- pivot: exam_id, question_id, order
+submissions     -- student_id, exam_id, started_at, finalized_at
+answers         -- submission_id, question_id, chosen_answer
+results         -- submission_id, score, percentage, passed, breakdown
+```
+
+---
+
+## File Index
 
 | File | Dùng cho |
 |---|---|
 | `00-overview.md` | File này — đọc trước |
-| `01-backend.md` | GitHub Copilot — scaffold toàn bộ backend microservices |
-| `02-design.md` | AI Studio / Stitch — design system + UI mockups |
-| `03-frontend.md` | GitHub Copilot — scaffold microfrontend (Module Federation) |
-| `04-mascot.md` | Adobe Firefly — generate Bo the Buffalo theo từng pose |
+| `01-backend.md` | GitHub Copilot — scaffold Go monolith |
+| `design/02-design.md` | AI Studio / Stitch — design system + UI mockups |
+| `03-frontend.md` | GitHub Copilot — scaffold Next.js app |
+| `mascots/04-mascot.md` | Adobe Firefly — generate Bò theo từng pose |
 | `05-cicd.md` | GitHub Copilot — GitHub Actions pipelines |
-| `06-loadbalancer.md` | GitHub Copilot — Traefik v3 config + SSL + routing |
 
 ---
 
@@ -113,48 +102,54 @@ CI/CD: GitHub Actions → Docker build → push → deploy
 
 ### Naming
 ```
-services/           → Go microservices
-frontend/           → MFE shell + remote apps
-proto/              → Shared Protobuf
-infra/              → Traefik, docker-compose, monitoring
+services/api/       → Go monolith
+frontend/app/       → Next.js App Router
+migrations/         → SQL migration files (Supabase CLI)
 .github/workflows/  → CI/CD pipelines
 ```
 
-### Environment files
+### Environment variables
 ```
-.env.example        → root (shared infra vars)
-services/{name}/.env.example → per-service vars
-frontend/{app}/.env.example  → per-MFE vars
+# Backend (.env)
+SUPABASE_DB_URL=postgresql://postgres:[password]@db.[ref].supabase.co:5432/postgres
+SUPABASE_SERVICE_ROLE_KEY=...
+JWT_SECRET=...
+PORT=8000
+
+# Frontend (.env.local)
+NEXT_PUBLIC_SUPABASE_URL=https://[ref].supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=...
+NEXT_PUBLIC_API_URL=http://localhost:8000
 ```
 
 ### Port convention
 ```
-80 / 443   → Traefik (public)
-8080       → Traefik dashboard
-8000–8009  → Backend REST (via gateway)
-9001–9009  → Backend gRPC (internal only)
-3000       → shell-app
-3001–3005  → MFE remote apps
+3000  → Next.js frontend
+8000  → Go monolith REST API
+54322 → Supabase local (supabase start)
 ```
 
 ---
 
-## Quick Start (sau khi scaffold xong)
+## Quick Start
 
 ```bash
 # 1. Clone & setup
-git clone https://github.com/your-org/HocTrau
-cd HocTrau
-cp .env.example .env
+git clone https://github.com/ThanhKhac14/BuffaloEdu.git
+cd BuffaloEdu
+cp .env.example .env   # điền Supabase keys
 
-# 2. Generate Protobuf
-cd proto && buf generate
+# 2. Start Supabase local (optional — dùng hosted cũng được)
+supabase start
+supabase db push       # apply migrations
 
-# 3. Start everything
-docker-compose up -d
+# 3. Start backend
+cd services/api && go run ./cmd/main.go
 
-# 4. Access
-# App:              https://HocTrau.local
-# Traefik dashboard: http://localhost:8080
-# Grafana:          http://localhost:3100 (admin/admin)
+# 4. Start frontend
+cd frontend && npm run dev
+
+# 5. Access
+# App:  http://localhost:3000
+# API:  http://localhost:8000
 ```

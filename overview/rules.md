@@ -9,14 +9,11 @@ These rules are NON-NEGOTIABLE. Follow them in every line of code, every config 
 ### Backend
 | Layer | Technology | Version |
 |---|---|---|
-| Language | Golang | 1.22+ |
-| Transport (internal) | gRPC + Protobuf | latest |
-| Proto tooling | buf CLI | latest |
-| Database | PostgreSQL (pgx/v5) | 16+ |
-| Cache | Redis | 7+ |
-| Queue | RabbitMQ | 3+ |
-| Monitoring | Prometheus + Grafana | latest |
-| Perf testing | k6 | latest |
+| Language | Golang | 1.24+ |
+| Transport | REST HTTP (Gin router) | latest |
+| Database | Supabase PostgreSQL (pgx/v5) | 16+ |
+| Auth | Supabase Auth (JWT validation) | latest |
+| Storage | Supabase Storage | latest |
 | Container | Docker + Docker Compose | latest |
 
 ### Frontend
@@ -24,7 +21,7 @@ These rules are NON-NEGOTIABLE. Follow them in every line of code, every config 
 |---|---|---|
 | Framework | Next.js App Router | 14+ |
 | Language | TypeScript (strict) | 5+ |
-| MFE | @module-federation/nextjs-mf | latest |
+| Auth | @supabase/supabase-js | latest |
 | Styling | Tailwind CSS v4 | latest |
 | Fonts | Be Vietnam Pro + JetBrains Mono | via next/font |
 | Icons | Lucide React | latest |
@@ -33,16 +30,15 @@ These rules are NON-NEGOTIABLE. Follow them in every line of code, every config 
 | Forms | React Hook Form + Zod | latest |
 | Charts | Recharts | latest |
 | Animation | Framer Motion (Bò only + page transitions) | latest |
-| Load balancer | Traefik v3 | latest |
 | CI/CD | GitHub Actions | — |
 
-### Allowed frontend dependencies (ONLY these per MFE)
+### Allowed frontend dependencies (ONLY these)
 ```json
 {
   "next": "latest",
   "react": "latest",
   "react-dom": "latest",
-  "@module-federation/nextjs-mf": "latest",
+  "@supabase/supabase-js": "latest",
   "lucide-react": "latest",
   "zustand": "latest",
   "@tanstack/react-query": "latest",
@@ -55,40 +51,39 @@ These rules are NON-NEGOTIABLE. Follow them in every line of code, every config 
 
 ### Forbidden
 - No ORM (no GORM, Ent, etc.) — raw SQL with pgx/v5 only
-- No shared PostgreSQL databases between services
-- No Redux, MobX, or other state managers — Zustand only
+- No gRPC, no Protobuf, no microservices
+- No React Redux, MobX — Zustand only
 - No UI component libraries (shadcn, MUI, Chakra) — build from design system
-- No Axios — use native fetch with typed wrapper
-- No `any` type anywhere — strict TypeScript
-- No `@ts-ignore` — fix the type error instead
-- No Framer Motion outside of BoCharacter, page transitions, and hat animations
-- No hardcoded hex values in components — CSS token classes only
+- No Axios — use native fetch or @supabase/supabase-js client
+- No `any` type — strict TypeScript
+- No `@ts-ignore` — fix the type error
+- No Framer Motion outside BoCharacter and page transitions
+- No hardcoded hex values — CSS token classes only
+- No RabbitMQ, Redis, Prometheus, Grafana, Traefik, k6
 
 ---
 
-## Go Service Template (apply to EVERY service)
+## Go Monolith Template
 
 ```
-services/{name}/
-├── cmd/main.go              # Entry: load config → connect deps → start gRPC server
+services/api/
+├── cmd/main.go              # Entry: load config → connect DB → register routes → listen
 ├── internal/
-│   ├── handler/             # gRPC method implementations — thin, call service only
-│   ├── service/             # Business logic — no DB access here
-│   ├── repository/          # ALL DB + Redis queries — pgx/v5, raw SQL
-│   ├── middleware/          # gRPC interceptors: auth, logging, metrics, recovery
-│   └── model/               # Domain structs (NOT proto-generated types)
-├── config/config.go         # Env loading via viper → typed Config struct
-├── gen/                     # Generated proto stubs (gitignored, from buf generate)
-├── migrations/              # SQL files: 001_init.up.sql, 001_init.down.sql
+│   ├── handler/             # HTTP handlers — 1 file per domain, thin
+│   ├── service/             # Business logic — no SQL
+│   ├── repository/          # ALL pgx/v5 SQL queries — 1 file per domain
+│   ├── middleware/          # HTTP middleware: auth, cors, rate-limit, logging
+│   └── model/               # Domain structs
+├── config/config.go         # All env vars via viper → Config struct
+├── migrations/              # 001_init.up.sql, 001_init.down.sql
 ├── Dockerfile
-├── .env.example
-└── README.md
+└── .env.example
 ```
 
 Layer rules:
 - `handler` calls `service` only — never touches repository or DB directly
 - `service` calls `repository` only — no SQL in service
-- `repository` is the only layer that touches PostgreSQL or Redis
+- `repository` is the only layer that touches Supabase PostgreSQL
 
 ---
 

@@ -62,7 +62,7 @@ Sections bắt buộc:
 
 1. **Project overview** — BuffaloEdu là gì, Bò mascot, tech stack badges
 2. **Architecture diagram** (Mermaid) — all services + Traefik + MFEs + RabbitMQ + Redis
-3. **Prerequisites** — Go 1.22+ · Node 20+ · Docker · buf CLI · k6
+3. **Prerequisites** — Go 1.24+ · Node 20+ · Docker · buf CLI · k6
 4. **Quick start** — 4 commands: clone → buf generate → cp .env → docker-compose up
 5. **Service catalogue** — service · port · gRPC port · chức năng
 6. **MFE catalogue** — app · port · routes · owns

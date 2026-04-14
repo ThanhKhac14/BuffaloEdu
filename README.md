@@ -1,9 +1,196 @@
 # 🐃 BuffaloEdu
 
-> **Nền tảng thi trực tuyến thế hệ mới — xây dựng bằng AI, tối ưu cho người Việt.**
+> **Nền tảng thi trực tuyến — xây dựng bởi 1 người, tối ưu cho người Việt.**
 
 Mascot: **Bò** — Trâu Việt Nam đội nón lá, phong cách anime 2D.  
 Tagline: *"Cày thôi!"*
+
+---
+
+## Kiến trúc tổng quan
+
+```
+┌─────────────────────────────────────────────────────┐
+│                     INTERNET                        │
+└──────────────────────┬──────────────────────────────┘
+                       │
+              ┌────────▼────────┐
+              │   Next.js App   │  :3000  App Router · TypeScript
+              └────────┬────────┘
+                       │ REST
+              ┌────────▼────────┐
+              │   Go Monolith   │  :8000  Gin router · pgx/v5
+              └────────┬────────┘
+                       │
+          ┌────────────┴────────────┐
+          │                         │
+  ┌───────▼───────┐        ┌────────▼───────┐
+  │   Supabase    │        │    Supabase    │
+  │  PostgreSQL   │        │ Auth + Storage │
+  └───────────────┘        └────────────────┘
+```
+
+---
+
+## Tech Stack
+
+| Layer | Technology |
+|---|---|
+| **Backend** | Go 1.24+ · Gin router · pgx/v5 raw SQL |
+| **Database** | Supabase PostgreSQL (hosted) |
+| **Auth** | Supabase Auth (JWT, OAuth, sessions) |
+| **Storage** | Supabase Storage (avatars, file uploads) |
+| **Frontend** | Next.js 14 · TypeScript strict · App Router |
+| **Styling** | Tailwind CSS v4 · Design tokens |
+| **Font** | Be Vietnam Pro + JetBrains Mono |
+| **State** | Zustand + TanStack Query v5 |
+| **Forms** | React Hook Form + Zod |
+| **Animation** | Framer Motion (Bò only) |
+| **Mascot** | Bò — 2D anime cel-shaded |
+| **CI/CD** | GitHub Actions |
+
+---
+
+## Cấu trúc repo
+
+```
+BuffaloEdu/
+│
+├── overview/               ← 🧠 Context files — đọc trước khi code
+│   ├── agents.md           ← AI agent roles
+│   ├── rules.md            ← Non-negotiable project rules
+│   ├── tasks.md            ← 6-phase task plan
+│   └── prompts.md          ← Copy-paste prompts cho từng phase
+│
+├── design/                 ← 🎨 Design system
+│   ├── 02-design.md        ← Stitch/AI Studio context block
+│   └── design-system/      ← Tokens, components
+│
+├── mascots/                ← 🐃 Mascot specs
+│   └── 00-mascot.md
+│
+├── services/
+│   └── api/                ← Go monolith (1 service)
+│       ├── cmd/main.go
+│       ├── internal/
+│       │   ├── handler/    ← HTTP handlers (Chi)
+│       │   ├── service/    ← Business logic
+│       │   ├── repository/ ← Raw SQL (pgx/v5)
+│       │   └── middleware/ ← JWT, CORS, rate limit
+│       └── migrations/     ← SQL files (Supabase CLI)
+│
+├── frontend/               ← Next.js App Router
+│
+├── 00-overview.md          ← Architecture map
+├── 01-backend.md           ← Backend Copilot prompt
+├── 03-frontend.md          ← Frontend Copilot prompt
+├── 05-cicd.md              ← GitHub Actions Copilot prompt
+└── README.md               ← File này
+```
+
+---
+
+## Quick start
+
+```bash
+git clone https://github.com/ThanhKhac14/BuffaloEdu.git
+cd BuffaloEdu
+cp .env.example .env   # điền Supabase keys
+
+# Option A — Supabase hosted (khuyến nghị)
+# Tạo project tại supabase.com, copy keys vào .env
+supabase db push       # apply migrations
+
+# Option B — Supabase local
+supabase start
+supabase db push
+
+# Start backend
+cd services/api && go run ./cmd/main.go
+
+# Start frontend (terminal mới)
+cd frontend && npm install && npm run dev
+
+# Access: http://localhost:3000
+```
+
+---
+
+## Database Schema
+
+| Table | Mô tả |
+|---|---|
+| `profiles` | Extended user info, role (admin/teacher/student), avatar |
+| `questions` | Content, options[], correct_answer, difficulty, subject, tags |
+| `exams` | Title, duration, settings, published_at |
+| `exam_questions` | Pivot: exam ↔ question + order |
+| `submissions` | Student exam attempt, started/finalized timestamps |
+| `answers` | Per-question answers cho mỗi submission |
+| `results` | Score, percentage, passed, time_taken, breakdown JSON |
+
+Auth (users) được quản lý bởi Supabase Auth — không cần table riêng.
+
+---
+
+## API Routes (Go Monolith)
+
+| Method | Route | Mô tả |
+|---|---|---|
+| POST | `/api/auth/sync` | Sync Supabase user → profile |
+| GET/PUT | `/api/users/me` | Profile của user hiện tại |
+| CRUD | `/api/questions` | Question bank |
+| CRUD | `/api/exams` | Exam management |
+| POST | `/api/submissions` | Start/submit exam |
+| GET | `/api/results/:id` | Kết quả thi |
+
+---
+
+## Phases
+
+| Phase | Nội dung | File |
+|---|---|---|
+| 1 | Scaffold: Go monolith + Supabase migrations + docker-compose | `overview/tasks.md` |
+| 2 | Auth + User (Supabase Auth sync + profile API) | `overview/tasks.md` |
+| 3 | Exam + Question + Submission + Result APIs | `overview/tasks.md` |
+| 4 | Frontend: layout + auth + dashboard | `overview/tasks.md` |
+| 5 | Frontend: exam + question bank + results | `overview/tasks.md` |
+| 6 | Polish: dark mode, responsive, Bò animations | `overview/tasks.md` |
+
+---
+
+## Mascot — Bò 🐃
+
+**Bò** là trâu nước Việt Nam, đội nón lá, phong cách anime 2D cel-shaded.
+
+| Màu | Hex | Vị trí |
+|---|---|---|
+| Body fur | `#6B4F3A` | Thân |
+| Face | `#83604B` | Mặt |
+| Belly | `#C9BDB0` | Bụng |
+| Eye iris | `#6A4224` + `#D4A44C` | Mắt |
+| Nón lá | `#F5E6C8` | Nón |
+| Jacket | `#1B2F4E` | Áo formal |
+| Cuffs | `#0D9B8A` | Tay áo |
+
+Xem `mascots/00-mascot.md` để có đầy đủ prompts cho tất cả poses.
+
+---
+
+## Design System
+
+- **Font:** Be Vietnam Pro (UI/Body) + JetBrains Mono (code/data)
+- **Theme:** Glassmorphism + Botanical/Organic, tông Matcha/Đất nung
+- **Primary:** `#0EA5E9` sky-teal · **Secondary:** `#F59E0B` amber
+- **Dark mode:** ✅ Class strategy, CSS custom properties
+- **No purple/violet anywhere**
+
+Xem `design/design-system/tokens.css` để có đầy đủ color tokens.
+
+---
+
+## License
+
+MIT
 
 ---
 
@@ -45,7 +232,7 @@ Frontend (Microfrontend — Module Federation)
 
 | Layer | Technology |
 |---|---|
-| **Backend** | Go 1.22+ · gRPC + Protobuf · PostgreSQL · Redis · RabbitMQ |
+| **Backend** | Go 1.24+ · gRPC + Protobuf · PostgreSQL · Redis · RabbitMQ |
 | **Frontend** | Next.js 14 · TypeScript · Module Federation · Tailwind CSS v4 |
 | **Font** | Be Vietnam Pro + JetBrains Mono |
 | **Mascot** | Bò — 2D anime cel-shaded, Adobe Firefly / Gemini |
