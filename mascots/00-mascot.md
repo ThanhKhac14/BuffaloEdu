@@ -41,24 +41,6 @@ COLOR_TOKENS
 
 ---
 
-## ⚙️ Tool Settings
-
-### Gemini Image Gen (AI Studio)
-```
-Model:   Imagen 3
-Format:  PNG transparent
-Style:   Illustration / Graphic
-```
-
-### Adobe Firefly (fallback)
-```
-Style:          Illustration
-Content type:   Graphic
-Color profile:  MUTED  ← BẮT BUỘC, KHÔNG chọn Vibrant
-Lighting:       Flat
-Aspect ratio:   2:3 cho hero · 1:1 cho medium
-```
-
 ---
 
 ## BASE PROMPT — Paste trước, rồi thêm POSE block bên dưới
@@ -94,41 +76,6 @@ RENDERING RULES:
 
 [APPEND POSE BLOCK HERE]
 ```
-
-### Outfit Variant B — Navy jacket + teal cuffs (formal, dashboard/hero)
-
-```
-Create a single 2D anime cel-shaded mascot character named "Bò" (Vietnamese water buffalo) per EXACT constraints below.
-
-MANDATORY CHARACTER:
-- Species: Male Asian water buffalo (clearly NOT a dairy cow).
-- Anatomy: humanoid proportions, exactly 2 arms and 2 legs, broad shoulders, slightly muscular yet cute/approachable.
-- Face: large anime eyes, iris #6A4224, amber highlight ring #D4A44C, thick black pupils, two white catchlights top-right, minimal masculine top lashes.
-- Nose: wide flat buffalo nose #2A1A0A with visible nostrils.
-- Horns: short gently curved horns #3D3530 with ivory tips #DCD0B8.
-- Hat: Vietnamese nón lá #F5E6C8 (woven bamboo texture) with ribbon #4A7C59, sits proportionally between horns (MANDATORY).
-- Outfit: navy zip jacket #1B2F4E with teal cuffs #0D9B8A, small teal "B" patch on left chest, short stubby dark-grey tail visible when full-body.
-- Palette (use exactly):
-  body #6B4F3A, face #83604B, belly #C9BDB0,
-  horns #3D3530, horn_tips #DCD0B8, nose #2A1A0A,
-  eye_iris #6A4224, eye_ring #D4A44C,
-  nonla #F5E6C8, ribbon #4A7C59,
-  jacket #1B2F4E, cuffs #0D9B8A.
-
-RENDERING RULES:
-- Style: 2D anime, cel-shaded, clean bold black outlines (variable weight).
-- Colors: flat fills, max 2-tone shading per color zone.
-- Lighting: Flat. Color profile: MUTED (NO neon).
-- Format: transparent PNG, no ground shadow, no background scenery, single character per image.
-- Forbidden: realistic fur, 3D/CGI, photorealistic, neon/oversaturated colors, purple/violet,
-  dairy cow features, extra limbs, missing horns or nón lá, hat floating detached,
-  chibi deform, text/watermark, multiple characters.
-
-[APPEND POSE BLOCK HERE]
-```
-
----
-
 ## POSE BLOCKS — Append vào cuối Base Prompt
 
 ### HAPPY / IDLE

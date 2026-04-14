@@ -17,7 +17,7 @@ Read `overview/rules.md` and `overview/tasks.md` before generating anything.
 
 ### If `service <name>`:
 
-Read `.claude/skills/go-service/SKILL.md` for the full template.
+Read `go-service/SKILL.md` for the full template.
 
 Generate these files for `services/<name>/`:
 ```

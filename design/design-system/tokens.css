@@ -1,0 +1,105 @@
+/* BuffaloEdu Design Tokens — CSS Vars */
+:root{
+  --background: #F8EDE3;
+  --foreground: #2D3B2A;
+  --surface-0: #EEF4EC;
+  --surface-1: #E4EDDF;
+  --surface-2: #D6E5CF;
+  --muted: #D6E5CF;
+  --muted-foreground: #6B7F69;
+  --primary: #798777;
+  --primary-foreground: #FFFFFF;
+  --primary-hover: #5E6D5C;
+  --primary-subtle: #BDD2B6;
+  --border: #C5BFB5;
+  --border-focus: #798777;
+  --secondary: #E9B96E;
+  --success: #4A9B6F;
+  --warning: #D97706;
+  --danger: #C0392B;
+  --info: #3B82A0;
+
+  /* Glass */
+  --glass-bg: rgba(248,237,227,0.55);
+  --glass-bg-strong: rgba(228,237,223,0.70);
+  --glass-border: rgba(189,210,182,0.60);
+  --glass-shadow: 0 4px 24px rgba(121,135,119,0.18), inset 0 1px 0 rgba(255,255,255,0.45);
+  --glass-blur: blur(12px);
+  --glass-blur-strong: blur(20px);
+
+  /* Spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+
+  /* Radii */
+  --radius-sm: 8px;
+  --radius-card: 16px;
+  --radius-modal: 24px;
+  --radius-full: 9999px;
+
+  /* Motion */
+  --motion-fast: 150ms;
+  --motion-medium: 400ms;
+  --motion-long: 600ms;
+  --motion-ease: cubic-bezier(0.2,0.9,0.2,1);
+}
+
+[data-theme="dark"]{
+  --background: #1C2419;
+  --foreground: #EFF5ED;
+  --surface-0: #1C2419;
+  --surface-1: #2A3C27;
+  --surface-2: #3D5439;
+  --muted: #2A3C27;
+  --muted-foreground: #9AB496;
+  --primary: #7FAD7A;
+  --primary-foreground: #FFFFFF;
+  --primary-hover: #A8CAAA;
+  --primary-subtle: #3D5439;
+  --border: #4A6647;
+  --border-focus: #7FAD7A;
+
+  /* Slightly stronger glass panel in dark mode for better contrast */
+  --glass-bg: rgba(34,44,33,0.74);
+  --glass-bg-strong: rgba(42,60,39,0.82);
+  --glass-border: rgba(127,175,122,0.36);
+  --glass-shadow: 0 8px 30px rgba(0,0,0,0.48), inset 0 1px 0 rgba(255,255,255,0.04);
+}
+
+/* Utility examples */
+.glass-card{
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  border-radius: var(--radius-card);
+}
+
+.button-primary{
+  height: 44px;
+  padding: 0 var(--space-6);
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-subtle));
+  color: var(--primary-foreground);
+  font-weight: 600;
+  transition: transform var(--motion-fast) var(--motion-ease), box-shadow var(--motion-fast);
+}
+
+.input-glass{
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  color: var(--foreground);
+}
+
+@media (prefers-reduced-motion: reduce){
+  *{transition-duration: 0.01ms !important; animation-duration: 0.01ms !important}
+}

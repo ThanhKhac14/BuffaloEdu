@@ -13,14 +13,14 @@ NO purple or violet anywhere in the entire product.
 ---
 
 ## Product Personality
-- Duolingo energy — warm, encouraging, playful but focused
+- Vibe: Vietnam countryside theme, fresh like Matcha, chill, healing and add some meme-friendly, glassmorphim.
 - NOT corporate, NOT cold, NOT clinical
 - Mascot Bò the Buffalo appears at key emotional moments (see mascot section)
 - Every empty state has Bo + a friendly CTA
 
 ---
 
-## Color System — LOCKED
+# DESIGN SYSTEM
 
 ### Light / Dark tokens
 | Token                  | Light    | Dark     | Usage |
@@ -152,64 +152,10 @@ Max content:     1280px
 ---
  
 ## Mascot — Bò the Buffalo
- 
-### Visual spec (LOCKED)
-```
-Species:  Vietnamese water buffalo — humanoid, male, friendly
-Style:    2D anime cel-shaded, Disney Junior / Nickelodeon quality
-Outfit A: White short-sleeve shirt + black khaki pants (casual)
-<!-- Outfit B: Navy jacket #1B2F4E + teal cuffs #0D9B8A (formal, hero screens) -->
-```
- 
-### Color tokens (LOCKED)
-```
-body:      #6B4F3A    face:      #83604B    belly:     #C9BDB0
-horns:     #3D3530    horn_tips: #DCD0B8    nose:      #2A1A0A
-eye_iris:  #6A4224    eye_ring:  #D4A44C
-nonla:     #F5E6C8    ribbon:    #4A7C59
-jacket:    #1B2F4E    cuffs:     #0D9B8A    patch:     #0D9B8A
-```
- 
-### Sizes
-| Size | Dimensions | Usage |
-|---|---|---|
-| hero | 240×360px (2:3) | Onboarding, result reveal |
-| medium | 120×120px | Empty states, streak |
-| small | 64×64px | Toast, inline |
-| micro | 32×32px | Timer, tab bar |
- 
-### Appearance map
-| Screen | Size | Pose | Outfit | Message |
-|---|---|---|---|---|
-| Onboarding | hero | happy | A | "Xin chào! Tao là Bò, cùng cày thôi! 🐃" |
-| Dashboard hero | hero | happy | B | Tagline |
-| Result 90–100% | hero | celebrating | B | "Amazing Gút Chóp! Bò tự hào về mày 🌟" |
-| Result 70–89% | hero | proud | B | "Làm tốt lắm! Trâu cày không bỏ cuộc 💪" |
-| Result 50–69% | medium | encouraging | A | "Cày thêm tí nữa! Lần sau chắc hơn 🎯" |
-| Result < 50% | medium | sad | A | "Đừng nản! Trâu ngã còn đứng dậy được 📚" |
-| Empty states | medium | thinking | A | (xem bảng dưới) |
-| Streak active | medium | streak-fire | B | "Bò đang giữ lửa! Đừng để tắt nhé." |
-| 404 | medium | sleeping | A | "Trang này đang nghỉ trưa... 😴" |
-| Error | small | sad | A | "Bò đang sửa máy cày, thử lại sau!" |
-| Timer 5min | micro | thinking | — | amber pulse |
-| Timer 1min | micro | surprised | — | red flash |
- 
-### Empty state messages
-| Screen | Message |
-|---|---|
-| No questions | "Chưa có câu hỏi. Tạo câu hỏi đầu tiên đi!" |
-| No exams | "Chưa có đề thi. Bắt đầu tạo đề thôi!" |
-| No results | "Chưa có kết quả. Học sinh chưa làm bài." |
-| No students | "Lớp học trống. Mời học sinh tham gia nhé!" |
-| Search empty | "Bò tìm mãi không thấy 🔍 Thử từ khác đi!" |
- 
-### Hat animation (Framer Motion — separate layer)
-```
-idle:        rotateZ ±3deg, 4s loop ease-in-out
-celebrating: y -60px + rotateZ 360deg, spring, then falls back
-surprised:   rotateZ 35deg rapid, spring
-sleeping:    y +20px covering eyes, slow ease
-```
+
+The canonical mascot specification for Bò (visuals, color tokens, poses, sizes, file naming, and hat animations) is maintained centrally in [docs/shared/mascot.md](/docs/shared/mascot.md). This document now sources the mascot details from that file to avoid duplication and keep a single source of truth.
+
+Refer to [docs/shared/mascot.md](/docs/shared/mascot.md) for the full locked mascot spec.
  
 ---
 
@@ -347,21 +293,72 @@ sleeping:    y +20px covering eyes, slow ease
 - Bo: PNG transparent, naming Bo-[pose]-[size].png
 
 ---
+ 
+## Generated Screens (Stitch)
+
+The following screens were generated on Stitch for project `6319692198318026226` and have local spec files in `design/screens/6319692198318026226/`:
+
+- Login — Desktop (Light)
+  - Stitch screen id: `59429d3ec1ee49cab617a61ddf5294bf` (tag: `login/desktop/light`)
+  - Local spec: `design/screens/6319692198318026226/login-desktop.md`
+- Login — Desktop (Dark)
+  - Stitch screen id: `91ed76bb9c2b47609129e57fa00ce735` (tag: `login/desktop/dark`)
+  - Local spec: `design/screens/6319692198318026226/login-desktop.md`
+
+- Dashboard — Desktop (Dark)
+  - Stitch screen id: `648100ec659c4edbbc33c7516a57a682` (tag: `dashboard/desktop/dark`)
+  - Local spec: `design/screens/6319692198318026226/dashboard-desktop.md`
+- Dashboard — Desktop (Light)
+  - Stitch screen id: `0b91b1660e1140918008f19220e5fd66` (tag: `dashboard/desktop/light`)
+  - Local spec: `design/screens/6319692198318026226/dashboard-desktop.md`
+
+- Dashboard — Mobile (Dark)
+  - Stitch screen id: `d68e4b57f6b14f93bd2a20a036ce4651` (tag: `dashboard/mobile/dark`)
+  - Local spec: `design/screens/6319692198318026226/dashboard-mobile.md`
+- Dashboard — Mobile (Light)
+  - Stitch screen id: `e28691ad5533426c8908cfdbbb576cef` (tag: `dashboard/mobile/light`)
+  - Local spec: `design/screens/6319692198318026226/dashboard-mobile.md`
+
+---
+
+Onboarding — Generated screens (project 6319692198318026226)
+- Onboarding — Desktop (Dark)
+  - Step 1: projects/6319692198318026226/screens/36de24eaf5804b25b6649ff1c44ddd0a (tag: onboarding/desktop/dark)
+  - Step 2: projects/6319692198318026226/screens/23106e36cca34a9b8a912f28e8922299 (tag: onboarding/desktop/dark)
+  - Step 3: projects/6319692198318026226/screens/9dad0e7b98284905bc41bf6b7d374406 (tag: onboarding/desktop/dark)
+  - Local spec: design/screens/6319692198318026226/onboarding-desktop.md
+- Onboarding — Desktop (Light)
+  - Step 1: projects/6319692198318026226/screens/96793578073c4bcc8ff973ee2bc9f7f5 (tag: onboarding/desktop/light)
+  - Step 2: projects/6319692198318026226/screens/8f5357ec05ab45d7aaa3c96796d9d922 (tag: onboarding/desktop/light)
+  - Step 3: projects/6319692198318026226/screens/44eb92f7cae345478811bc99de8b6c89 (tag: onboarding/desktop/light)
+  - Local spec: design/screens/6319692198318026226/onboarding-desktop.md
+- Onboarding — Mobile (Dark)
+  - Step 1: projects/6319692198318026226/screens/d11c3bf5509f4cd7a2a5660fa00bb020 (tag: onboarding/mobile/dark)
+  - Step 2: projects/6319692198318026226/screens/77db4380382941d6bd495bc1e52d2c8f (tag: onboarding/mobile/dark)
+  - Step 3: projects/6319692198318026226/screens/a7e2e679f00f40ec8db99bd307078398 (tag: onboarding/mobile/dark)
+  - Local spec: design/screens/6319692198318026226/onboarding-mobile.md
+- Onboarding — Mobile (Light)
+  - Step 1: projects/6319692198318026226/screens/4a96d1d846454b9c8126918f24b6b686 (tag: onboarding/mobile/light)
+  - Step 2: projects/6319692198318026226/screens/0b640423fb85463db1af5bd471b88c4d (tag: onboarding/mobile/light)
+  - Step 3: projects/6319692198318026226/screens/f1603b2132964c1d96c3401d170e5bbb (tag: onboarding/mobile/light)
+  - Local spec: design/screens/6319692198318026226/onboarding-mobile.md
+
+Note: open the Stitch canvas to inspect assets and token mapping. If you want I can export the SVG assets into `public/assets/` next.
 
 ## Session tracking
 Update this list as items are completed:
-[ ] Color tokens exported
-[ ] Typography exported
-[ ] Component library — atoms
-[ ] Component library — molecules
-[ ] Component library — organisms
-[ ] Page: Login / Register
-[ ] Page: Onboarding
-[ ] Page: Dashboard
-[ ] Page: Question Bank
-[ ] Page: Create Exam
-[ ] Page: Take Exam
-[ ] Page: Result
-[ ] Page: Reports
-[ ] Page: Achievements
+- [x] Color tokens exported
+- [x] Typography exported
+- [x] Component library — atoms (specs created)
+- [ ] Component library — molecules
+- [ ] Component library — organisms
+- [x] Page: Login / Register
+- [x] Page: Onboarding
+- [x] Page: Dashboard
+- [ ] Page: Question Bank
+- [ ] Page: Create Exam
+- [ ] Page: Take Exam
+- [ ] Page: Result
+- [ ] Page: Reports
+- [ ] Page: Achievements
 ```

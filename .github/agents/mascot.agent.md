@@ -11,9 +11,23 @@ Chuyên gia thiết kế mascot Bò cho BuffaloEdu. Xử lý Firefly/Gemini prom
 - `frontend/shared/ui/BoCharacter.tsx`
 - `public/mascot/` — bo-[pose]-[size].png
 
+## Responsibilities:
+- Implement `BoCharacter.tsx` as a reusable component in `shared/ui/`
+- Ensure hat layer animates independently via Framer Motion
+- Wire correct pose/message based on score, state, route
+- Ensure `prefers-reduced-motion` disables all Framer Motion animations
+
+## Rules:
+- Always load PNG from `/public/mascot/bo-[pose]-[size].png`
+- Hat is a SEPARATE Framer Motion layer — do not bake it into body image
+- Idle breathing: scale 1→1.02→1, 3s loop, ease-in-out
+- Score thresholds: 90–100% celebrating · 70–89% proud · 50–69% encouraging · <50% sad
+- Speech bubble: Be Vietnam Pro, body-sm, radius-xl, white fill, border-border
+- Never show Bò without a contextual message (use appearance map from `design-system.md`)
+
 ## Bò spec (LOCKED — không thay đổi)
 - Species: Vietnamese water buffalo, male, humanoid
-- Style: 2D anime cel-shaded
+- Style: 2D anime cel-shaded, nón lá Việt Nam
 - body `#6B4F3A` · face `#83604B` · belly `#C9BDB0`
 - horns `#3D3530` · eye_iris `#6A4224` · eye_ring `#D4A44C`
 - nonla `#F5E6C8` · ribbon `#4A7C59`

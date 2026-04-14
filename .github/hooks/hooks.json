@@ -1,0 +1,77 @@
+{
+  "version": 1,
+  "hooks": {
+    "sessionStart": [
+      {
+        "type": "command",
+        "bash": "./scripts/hooks/session-start.sh",
+        "powershell": "./scripts/hooks/session-start.ps1",
+        "cwd": ".",
+        "timeoutSec": 15,
+        "env": {
+          "PROJECT": "buffalo-edu",
+          "LOG_DIR": "logs/copilot"
+        }
+      }
+    ],
+    "sessionEnd": [
+      {
+        "type": "command",
+        "bash": "./scripts/hooks/session-end.sh",
+        "powershell": "./scripts/hooks/session-end.ps1",
+        "cwd": ".",
+        "timeoutSec": 15,
+        "env": {
+          "LOG_DIR": "logs/copilot"
+        }
+      }
+    ],
+    "userPromptSubmitted": [
+      {
+        "type": "command",
+        "bash": "./scripts/hooks/validate-prompt.sh",
+        "powershell": "./scripts/hooks/validate-prompt.ps1",
+        "cwd": ".",
+        "timeoutSec": 10,
+        "env": {
+          "LOG_LEVEL": "INFO"
+        }
+      }
+    ],
+    "preToolUse": [
+      {
+        "type": "command",
+        "bash": "./scripts/hooks/pre-tool-use.sh",
+        "powershell": "./scripts/hooks/pre-tool-use.ps1",
+        "cwd": ".",
+        "timeoutSec": 20
+      }
+    ],
+    "postToolUse": [
+      {
+        "type": "command",
+        "bash": "./scripts/hooks/post-tool-use.sh",
+        "powershell": "./scripts/hooks/post-tool-use.ps1",
+        "cwd": ".",
+        "timeoutSec": 90,
+        "env": {
+          "RUN_LINT": "true",
+          "RUN_TESTS": "true",
+          "LOG_DIR": "logs/copilot"
+        }
+      }
+    ],
+    "errorOccurred": [
+      {
+        "type": "command",
+        "bash": "./scripts/hooks/error-handler.sh",
+        "powershell": "./scripts/hooks/error-handler.ps1",
+        "cwd": ".",
+        "timeoutSec": 10,
+        "env": {
+          "LOG_DIR": "logs/copilot"
+        }
+      }
+    ]
+  }
+}
